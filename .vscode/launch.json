@@ -1,0 +1,96 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Linux Studio",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/clang-studio-debug/RobloxStudio/RobloxStudio",
+            "args": [],
+            "cwd": "${workspaceFolder}/build/clang-studio-debug/RobloxStudio",
+            "environment": [
+                {
+                    "name": "QT_QPA_PLATFORM",
+                    "value": "xcb"
+                }
+            ]
+        },
+        {
+            "name": "Windows Studio",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/clangcl-studio-debug/RobloxStudio/RobloxStudio.exe",
+            "args": [],
+            "cwd": "${workspaceFolder}/build/clangcl-studio-debug/RobloxStudio",
+            "environment": [
+                {
+                    "name": "QT_QPA_PLATFORM",
+                    "value": "windows"
+                }
+            ],
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Windows Player",
+            "type": "cppvsdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/windows-debug/UniversalClient/UniversalClient.exe",
+            "args": [
+                "--authenticationUrl=https://assetgame.roblox.loc/Login/Negotiate.ashx",
+                "--authenticationTicket=11",
+                "--joinScriptUrl=https://www.roblox.loc/api/game/join?placeId=1818",
+                "--baseUrl=https://www.roblox.loc/api/"
+            ],
+            "cwd": "${workspaceFolder}/build/windows-debug/UniversalClient",
+            "console": "integratedTerminal"
+        },
+        {
+            "name": "Linux Player",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/linux-debug/UniversalClient/UniversalClient",
+            "args": [
+                "--authenticationUrl=https://assetgame.roblox.loc/Login/Negotiate.ashx",
+                "--authenticationTicket=11",
+                "--joinScriptUrl=https://www.roblox.loc/api/game/join?placeId=1818",
+                "--baseUrl=https://www.roblox.loc/api/"
+            ],
+            "cwd": "${workspaceFolder}/build/linux-debug/UniversalClient",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Linux Profiler",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/linux-profiler-release/UniversalClient/UniversalClient",
+            "args": [
+                "-a",
+                "https://www.localhost:8443/api/login/negotiate",
+                "-t",
+                "PROFILER",
+                "-j",
+                "https://www.localhost:8443/api/game/join",
+                "-b",
+                "https://localhost:8443/api"
+            ],
+            "cwd": "${workspaceFolder}/build/linux-profiler-release/UniversalClient",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "GameServer",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/build/clang-rcc-debug/RCCService/RCCService",
+            "args": [
+                "-Console"
+            ],
+            "cwd": "${workspaceFolder}/build/clang-rcc-debug/RCCService",
+            "externalConsole": false,
+            "MIMode": "gdb"
+        }
+    ]
+}

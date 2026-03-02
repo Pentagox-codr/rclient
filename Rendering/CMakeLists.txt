@@ -1,0 +1,7 @@
+add_subdirectory(g3d)
+add_subdirectory(AppDraw)
+add_subdirectory(RbxG3D)
+add_subdirectory(GfxBase)
+add_subdirectory(GfxCore)
+add_subdirectory(GfxRender)
+add_subdirectory(ShaderCompiler EXCLUDE_FROM_ALL)
