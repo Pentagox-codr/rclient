@@ -1,0 +1,70 @@
+name: Build Roblox (2016 Source)
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    env:
+      BUILD_DIR: ${{ github.workspace }}
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # Setup MSBuild (Visual Studio)
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+
+      # Optional: Setup VS Dev Command Prompt
+      - name: Setup Developer Command Prompt
+        uses: ilammy/msvc-dev-cmd@v1
+
+      # ---- BOOST BUILD ----
+      - name: Build Boost
+        shell: cmd
+        run: |
+          cd Library\boost
+          call bootstrap.bat
+          call build_boost.bat
+        env:
+          BOOST_ROOT: ${{ github.workspace }}\Library\boost
+
+      # ---- QT BUILD ----
+      - name: Configure 
+        shell: cmd
+        run: |
+          cd Library/Qt
+          configure -make nmake ^
+          -platform win32-msvc2015 ^
+          -prefix %BUILD_DIR%\Library\Qt ^
+          -opensource -confirm-license ^
+          -opengl desktop ^
+          -nomake examples -nomake tests ^
+          -webkit -xmlpatterns
+
+      - name: Build Qt (partial)
+        working-directory: Library/Qt
+        run: nmake
+
+      # ---- BUILD MAIN SOLUTION ----
+      - name: Build Roblox Solution
+        run: |
+          msbuild Roblox.sln ^
+          /p:Configuration=Release ^
+          /p:Platform=Win32 ^
+          /m
+
+      # ---- ARTIFACTS ----
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: roblox-build
+          path: |
+            **/Release/*.exe
+            **/Release/*.dll
