@@ -168,7 +168,7 @@
         "VCPKG_TARGET_TRIPLET": "arm-neon-android"
       }
     },
-    {
+        {
       "name": "android-arm64",
       "displayName": "Android ARM64",
       "description": "Build for Android 64-bit (arm64-v8a), minSdk 21",
