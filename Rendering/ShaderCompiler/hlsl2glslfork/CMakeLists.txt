@@ -107,7 +107,6 @@ source_group("Machine Independent\\Generated Source" FILES ${MACHINE_INDEPENDENT
 # Add system specific settings
 if (WIN32)
     set(OSDEPENDENT_FILES
-      hlslang/OSDependent/Windows/main.cpp
       hlslang/OSDependent/Windows/osinclude.h
       hlslang/OSDependent/Windows/ossource.cpp
     )
